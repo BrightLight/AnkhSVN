@@ -15,7 +15,6 @@
 //  limitations under the License.
 
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell.Interop;
@@ -24,7 +23,9 @@ using Ankh;
 
 namespace AnkhSvn_UnitTestProject.Helpers
 {
-    static class CommandExecutor
+  using NUnit.Framework;
+
+  static class CommandExecutor
     {
         public static void ExecuteCommand(IVsPackage package, AnkhCommand command)
         {

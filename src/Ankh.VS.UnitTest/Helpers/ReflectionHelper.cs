@@ -16,11 +16,12 @@
 
 using System;
 using System.Reflection;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AnkhSvn_UnitTestProject.Helpers
 {
-    static class ReflectionHelper
+  using NUnit.Framework;
+
+  static class ReflectionHelper
     {
         public static TReturn InvokeMethod<TTarget, TReturn>(TTarget targetInstance, string methodName, params object[] parameters)
             where TReturn : class

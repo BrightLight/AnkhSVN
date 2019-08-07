@@ -16,9 +16,9 @@
 
 using System;
 using Microsoft.VsSDK.UnitTestLibrary;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.VisualStudio.Shell.Interop;
 using System.Collections.Generic;
+using NUnit.Framework;
 
 namespace AnkhSvn_UnitTestProject.Helpers
 {
