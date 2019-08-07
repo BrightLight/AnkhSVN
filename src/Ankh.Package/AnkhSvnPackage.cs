@@ -122,19 +122,19 @@ namespace Ankh.VSPackage
                 if (Thread.CurrentThread.CurrentUICulture != uiCulture)
                     Thread.CurrentThread.CurrentUICulture = uiCulture;
             }
-            
 
 
-            InitializeRuntime(); // Moved to function of their own to speed up devenv /setup
+
+            await InitializeRuntimeAsync(); // Moved to function of their own to speed up devenv /setup
             RegisterAsOleComponent();
             
         }
 
-        void InitializeRuntime()
+        async System.Threading.Tasks.Task InitializeRuntimeAsync()
         {
             _runtime.PreLoad();
 
-            IServiceContainer container = GetService<IServiceContainer>();
+            IServiceContainer container = await this.GetServiceAsync<IServiceContainer>();
             container.AddService(typeof(IAnkhPackage), this, true);
             container.AddService(typeof(IAnkhQueryService), this, true);
 
@@ -147,14 +147,14 @@ namespace Ankh.VSPackage
 
             RegisterEditors();
 
-            NotifyLoaded(false);
+            await NotifyLoadedAsync(false);
 
             _runtime.Start();
 
-            NotifyLoaded(true);
+            await NotifyLoadedAsync(true);
         }
 
-        private void NotifyLoaded(bool started)
+        private async System.Threading.Tasks.Task NotifyLoadedAsync(bool started)
         {
             // We set the user context AnkhLoadCompleted active when we are loaded
             // This event can be used to trigger loading other packages that depend on AnkhSVN
@@ -164,7 +164,7 @@ namespace Ankh.VSPackage
             // On their package, they load automatically when we are completely loaded
             //
 
-            IVsMonitorSelection ms = GetService<IVsMonitorSelection>();
+            IVsMonitorSelection ms = await this.GetServiceAsync<IVsMonitorSelection>();
             if (ms != null)
             {
                 Guid gAnkhLoaded = new Guid(started ? AnkhId.AnkhRuntimeStarted : AnkhId.AnkhServicesAvailable);
