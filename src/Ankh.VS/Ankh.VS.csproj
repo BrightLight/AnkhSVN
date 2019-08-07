@@ -45,7 +45,6 @@
     <LangVersion>5</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.VisualStudio.Shell.16.0" />
     <Reference Include="SharpGit, Version=0.2193.1047.130, Culture=neutral, PublicKeyToken=bbd5cbe025856bdf, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\autolib\SharpGit\SharpGit.dll</HintPath>
