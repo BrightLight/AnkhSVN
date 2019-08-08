@@ -156,6 +156,8 @@ namespace Ankh.VSPackage
 
         private async System.Threading.Tasks.Task NotifyLoadedAsync(bool started)
         {
+            await JoinableTaskFactory.SwitchToMainThreadAsync(DisposalToken);
+
             // We set the user context AnkhLoadCompleted active when we are loaded
             // This event can be used to trigger loading other packages that depend on AnkhSVN
             // 
